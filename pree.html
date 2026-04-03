@@ -9,19 +9,157 @@
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #fce7f3 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-in;
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(79, 70, 229, 0.6);
+            }
+        }
+
         .gradient-text {
-            background: linear-gradient(to right, #4f46e5, #0ea5e9);
+            background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite;
         }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: slideInUp 0.8s ease-out;
         }
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header animation */
+        .bg-slate-900 {
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        h1 {
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h3 {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .w-14 {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        /* Number badges animation */
+        .w-12 {
+            transition: all 0.3s ease;
+        }
+
+        :hover .w-12 {
+            transform: rotate(360deg) scale(1.1);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Result section animation */
+        .text-6xl {
+            animation: fadeIn 2s ease-out;
+        }
+
+        .bg-gradient-to-r {
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        /* Smooth list animation */
+        li {
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        li:nth-child(1) { animation-delay: 0.1s; }
+        li:nth-child(2) { animation-delay: 0.2s; }
+        li:nth-child(3) { animation-delay: 0.3s; }
+
+        /* Card hover effects with colors */
+        .bg-blue-50:hover {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        .bg-indigo-50:hover {
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+        }
+
+        /* Step cards animation */
+        .grid div {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .grid div:nth-child(1) { animation-delay: 0.2s; }
+        .grid div:nth-child(2) { animation-delay: 0.4s; }
+        .grid div:nth-child(3) { animation-delay: 0.6s; }
+
+        /* Glow effect for icons */
+        .shadow-lg {
+            transition: all 0.3s ease;
+        }
+
+        .bg-blue-500:hover {
+            animation: glow 0.6s ease-in-out;
         }
     </style>
 </head>
@@ -30,14 +168,14 @@
     <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
         
         <!-- Header Section -->
-        <div class="bg-slate-900 text-white p-10 text-center relative overflow-hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 text-white p-10 text-center relative overflow-hidden shadow-2xl">
             <div class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             <div class="relative z-10">
-                <span class="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">AI Project Summary</span>
-                <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-2">การจำแนกตัวเลขเขียนมือด้วย AI</h1>
+                <span class="bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">AI Project Summary</span>
+                <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-2 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">การจำแนกตัวเลขเขียนมือด้วย AI</h1>
                 <h2 class="text-xl md:text-2xl text-indigo-200 font-light">(CNN Handwritten Digit Classification)</h2>
-                <div class="mt-6 inline-block bg-white/10 backdrop-blur-sm rounded-lg px-6 py-2 border border-white/20">
-                    <p class="text-sm font-medium">จัดทำโดย: <span class="font-bold text-indigo-300">นายรพิภัทร แสนกล้า</span></p>
+                <div class="mt-6 inline-block bg-white/10 backdrop-blur-md rounded-lg px-6 py-2 border border-white/30 shadow-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                    <p class="text-sm font-medium">จัดทำโดย: <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-blue-300">นายรพิภัทร แสนกล้า</span></p>
                 </div>
             </div>
         </div>
@@ -47,26 +185,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 
                 <!-- Card 1: Overview -->
-                <div class="bg-blue-50 rounded-2xl p-8 border border-blue-100 card-hover">
-                    <div class="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-200">
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200 card-hover shadow-lg hover:shadow-2xl">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-300">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-3">1. โครงการคืออะไร?</h3>
-                    <p class="text-slate-600 leading-relaxed">
+                    <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-3">1. โครงการคืออะไร?</h3>
+                    <p class="text-slate-700 leading-relaxed font-medium">
                         สร้างปัญญาประดิษฐ์ (AI) ที่สามารถ "มอง" และ "แยกแยะ" ตัวเลข 0-9 จากลายมือคนได้ โดยเรียนรู้ผ่านชุดข้อมูล <strong>MNIST</strong> ซึ่งมีรูปภาพลายมือกว่า 60,000 รูป
                     </p>
                 </div>
 
                 <!-- Card 2: Tools -->
-                <div class="bg-indigo-50 rounded-2xl p-8 border border-indigo-100 card-hover">
-                    <div class="w-14 h-14 bg-indigo-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-200">
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200 card-hover shadow-lg hover:shadow-2xl">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-300">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-3">2. เครื่องมือและการจัดการ</h3>
-                    <ul class="text-slate-600 space-y-2">
-                        <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> <strong>Anaconda:</strong> จัดการ Environment ป้องกัน Library ตีกัน</li>
-                        <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> <strong>Ubuntu:</strong> ระบบปฏิบัติการหลักที่เสถียร</li>
-                        <li class="flex items-start"><span class="text-green-500 mr-2">✓</span> <strong>PyTorch:</strong> สร้างโครงข่ายประสาทเทียมระดับสากล</li>
+                    <h3 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">2. เครื่องมือและการจัดการ</h3>
+                    <ul class="text-slate-700 space-y-2 font-medium">
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2 text-xl">✓</span> <strong>Anaconda:</strong> จัดการ Environment ป้องกัน Library ตีกัน</li>
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2 text-xl">✓</span> <strong>Ubuntu:</strong> ระบบปฏิบัติการหลักที่เสถียร</li>
+                        <li class="flex items-start"><span class="text-emerald-500 mr-2 text-xl">✓</span> <strong>PyTorch:</strong> สร้างโครงข่ายประสาทเทียมระดับสากล</li>
                     </ul>
                 </div>
 
@@ -74,59 +212,59 @@
 
             <!-- Middle Row: How it works (Process) -->
             <div class="mb-12">
-                <h3 class="text-2xl font-bold text-center text-slate-800 mb-8">3. หลักการทำงานของ CNN (เหมือนดวงตามนุษย์)</h3>
+                <h3 class="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-8">3. หลักการทำงานของ CNN (เหมือนดวงตามนุษย์)</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <!-- Step 1 -->
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative text-center">
-                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 text-indigo-600 font-bold text-xl">1</div>
-                        <h4 class="font-bold text-lg mb-2 text-slate-800">Convolution</h4>
-                        <p class="text-sm text-slate-500">ทำหน้าที่สแกนหาจุดเด่นในภาพ เช่น เส้นตรง ส่วนโค้ง หรือขอบตัวเลข</p>
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl border-2 border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative hover:scale-105">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-blue-300 text-white font-bold text-xl shadow-lg">1</div>
+                        <h4 class="font-bold text-lg mb-2 text-blue-900">Convolution</h4>
+                        <p class="text-sm text-slate-600">ทำหน้าที่สแกนหาจุดเด่นในภาพ เช่น เส้นตรง ส่วนโค้ง หรือขอบตัวเลข</p>
                         <!-- Arrow (hidden on mobile) -->
-                        <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 text-slate-300">
+                        <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 text-cyan-400 animate-pulse">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </div>
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative text-center">
-                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 text-indigo-600 font-bold text-xl">2</div>
-                        <h4 class="font-bold text-lg mb-2 text-slate-800">Pooling</h4>
-                        <p class="text-sm text-slate-500">ลดขนาดภาพลง แต่เก็บเฉพาะข้อมูลที่ "สำคัญที่สุด" ไว้ ทำให้ประมวลผลเร็วขึ้น</p>
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border-2 border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative hover:scale-105">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-purple-300 text-white font-bold text-xl shadow-lg">2</div>
+                        <h4 class="font-bold text-lg mb-2 text-purple-900">Pooling</h4>
+                        <p class="text-sm text-slate-600">ลดขนาดภาพลง แต่เก็บเฉพาะข้อมูลที่ "สำคัญที่สุด" ไว้ ทำให้ประมวลผลเร็วขึ้น</p>
                         <!-- Arrow (hidden on mobile) -->
-                        <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 text-slate-300">
+                        <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 text-pink-400 animate-pulse">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </div>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
-                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 text-indigo-600 font-bold text-xl">3</div>
-                        <h4 class="font-bold text-lg mb-2 text-slate-800">Dropout (0.5)</h4>
-                        <p class="text-sm text-slate-500">สุ่มปิดเซลล์ประสาท เพื่อป้องกันการ "ท่องจำ" ช่วยให้ทายลายมือใหม่ๆ ได้แม่นยำ</p>
+                    <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-6 rounded-2xl border-2 border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 text-center hover:scale-105">
+                        <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-emerald-300 text-white font-bold text-xl shadow-lg">3</div>
+                        <h4 class="font-bold text-lg mb-2 text-emerald-900">Dropout (0.5)</h4>
+                        <p class="text-sm text-slate-600">สุ่มปิดเซลล์ประสาท เพื่อป้องกันการ "ท่องจำ" ช่วยให้ทายลายมือใหม่ๆ ได้แม่นยำ</p>
                     </div>
                 </div>
             </div>
 
             <!-- Bottom Row: Results Highlights -->
-            <div class="bg-gradient-to-r from-slate-900 to-indigo-900 rounded-2xl p-8 md:p-10 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-r from-slate-900 via-indigo-900 to-purple-900 rounded-2xl p-8 md:p-10 text-white shadow-2xl relative overflow-hidden hover:shadow-3xl transition-all duration-300">
                 <!-- Background decoration -->
-                <svg class="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 text-white opacity-5 w-64 h-64" fill="currentColor" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                <svg class="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 text-white opacity-10 w-64 h-64 animate-pulse" fill="currentColor" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
                 
-                <h3 class="text-2xl font-bold mb-6 text-indigo-200">4. ผลลัพธ์ความสำเร็จ (Results)</h3>
+                <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">4. ผลลัพธ์ความสำเร็จ (Results)</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div class="text-center md:text-left">
-                        <p class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-2">98-99%</p>
-                        <p class="text-lg text-slate-300 font-medium">ค่าความแม่นยำ (Accuracy) จากการเทรน 10 Epochs</p>
+                        <p class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-emerald-300 to-cyan-300 mb-2">98-99%</p>
+                        <p class="text-lg text-slate-200 font-semibold">ค่าความแม่นยำ (Accuracy) จากการเทรน 10 Epochs</p>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-                        <div class="flex items-center mb-3">
-                            <svg class="w-6 h-6 text-yellow-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                            <h4 class="font-bold text-lg">การทดสอบจริง (Custom Image)</h4>
+                    <div class="bg-white/15 backdrop-blur-lg rounded-2xl p-6 border border-white/40 shadow-xl hover:bg-white/25 transition-all duration-300">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 text-yellow-300 mr-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                            <h4 class="font-bold text-lg text-white">การทดสอบจริง (Custom Image)</h4>
                         </div>
-                        <p class="text-slate-300 text-sm leading-relaxed">
+                        <p class="text-slate-200 text-sm leading-relaxed">
                             ระบบรองรับการนำภาพลายมือที่วาดขึ้นใหม่มาตรวจสอบ โดยมีกระบวนการแปลงภาพเป็นสีขาวดำ (Grayscale) ขนาด 28x28 เพื่อให้ AI อ่านค่าได้ทันที
                         </p>
                     </div>
